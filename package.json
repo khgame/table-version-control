@@ -1,0 +1,28 @@
+{
+  "name": "@khgame/table-vc",
+  "description": "tools and standards for game value tables version control",
+  "version": "0.1.0",
+  "main": "./bin/index.js",
+  "bin": {
+    "table-vc": "./bin/exec.js"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/khgame/table-version-control.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/khgame/table-version-control/issues"
+  },
+  "homepage": "https://github.com/khgame/table-version-control#readme",
+  "dependencies": {
+    "fs-extra": "^7.0.1",
+    "kht": "^0.0.6",
+    "path": "^0.12.7"
+  }
+}

@@ -21,8 +21,11 @@
   },
   "homepage": "https://github.com/khgame/table-version-control#readme",
   "dependencies": {
+    "chalk": "^2.4.2",
     "fs-extra": "^7.0.1",
     "kht": "^0.0.6",
-    "path": "^0.12.7"
+    "path": "^0.12.7",
+    "readline": "^1.3.0",
+    "yargs": "^13.2.1"
   }
 }

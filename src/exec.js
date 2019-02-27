@@ -47,29 +47,28 @@ if(!branch && !init) {
 if(init){
     if(fs.pathExistsSync(CONFIG_PATH)) {
         logError(`the file ${CONFIG_PATH} are already exist.`)
-        return;
-    }
+    }else {
+        const rl = readline.createInterface({
+            input: process.stdin,
+            output: process.stdout
+        });
 
-    const rl = readline.createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
-    rl.question(`git repo url (default:${config.repoUrl}): `, (repoUrl) => {
-        config.repoUrl = repoUrl || config.repoUrl
-        rl.question(`utput dir (default:${config.tableDir}): `, (tableDir) => {
-            config.tableDir = tableDir || config.tableDir
-            rl.question(`default git brunch for "latest" (default:${config.branch.latest}): `, (latest) => {
-                config.branch.latest = latest || config.branch.latest
-                fs.writeJsonSync(CONFIG_PATH, config, {
-                    spaces : 2,
-                    replacer: ' '
+        rl.question(`git repo url (default:${config.repoUrl}): `, (repoUrl) => {
+            config.repoUrl = repoUrl || config.repoUrl
+            rl.question(`utput dir (default:${config.tableDir}): `, (tableDir) => {
+                config.tableDir = tableDir || config.tableDir
+                rl.question(`default git brunch for "latest" (default:${config.branch.latest}): `, (latest) => {
+                    config.branch.latest = latest || config.branch.latest
+                    fs.writeJsonSync(CONFIG_PATH, config, {
+                        spaces: 2,
+                        replacer: ' '
+                    })
+                    logInfo(`the file ${chalk.yellow(CONFIG_PATH)} created.`)
+                    rl.close();
                 })
-                logInfo(`the file ${chalk.yellow(CONFIG_PATH)} created.`)
-                rl.close();
             })
-        })
-    });
+        });
+    }
 }
 
 if(branch) {

@@ -2,6 +2,9 @@ _*/
 .idea
 .vscode
 
+# build
+bin
+
 # Logs
 logs
 *.log

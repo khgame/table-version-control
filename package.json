@@ -1,13 +1,14 @@
 {
   "name": "@khgame/table-vc",
   "description": "tools and standards for game value tables version control",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "main": "./bin/index.js",
   "bin": {
     "table-vc": "./bin/exec.js"
   },
   "scripts": {
-    "build": "rimraf ./lib/ && babel ./src --experimental --source-maps-inline -d ./lib --copy-files LICENSE README.md"
+    "build": "rimraf ./bin/ && babel ./src --experimental --source-maps-inline -d ./bin --copy-files LICENSE README.md",
+    "prepublishOnly": "npm run build"
   },
   "repository": {
     "type": "git",
@@ -19,6 +20,9 @@
     "url": "https://github.com/khgame/table-version-control/issues"
   },
   "homepage": "https://github.com/khgame/table-version-control#readme",
+  "files": [
+    "bin"
+  ],
   "dependencies": {
     "chalk": "^2.4.2",
     "fs-extra": "^7.0.1",

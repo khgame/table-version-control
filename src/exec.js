@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const Path = require('path')
 const chalk = require('chalk')
 const readline = require('readline')

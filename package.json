@@ -1,14 +1,15 @@
 {
   "name": "@khgame/table-vc",
   "description": "tools and standards for game value tables version control",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "main": "./bin/index.js",
   "bin": {
     "table-vc": "./bin/exec.js"
   },
   "scripts": {
     "build": "rimraf ./bin/ && babel ./src --experimental --source-maps-inline -d ./bin --copy-files LICENSE README.md",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "local-install": "rimraf /usr/local/lib/node_modules/@khgame/table-vc && npm i . -g"
   },
   "repository": {
     "type": "git",

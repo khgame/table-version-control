@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 const { Git } = require('kht');
 const fs = require('fs-extra')
 const Path = require('path')

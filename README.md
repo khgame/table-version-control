@@ -10,7 +10,8 @@ value tables version control tool, based on git
 2. `cd your_project_dir`
 3. using `table-vc --init` to create a `table-vc.json` file
 4. using `table-vc --alias` to create alias
-5. using `table-vc --checkout ALIAS|BRANCH_NAME` to checkout selected branch or commits
+5. using `table-vc --update` to fetch tables of locked version
+6. using `table-vc --checkout ALIAS|BRANCH_NAME` to checkout selected branch or commits, and then set this version as lock in table-vc.json file
 
 ### config
 
@@ -49,9 +50,23 @@ example:
 - usage
     `table-vc -c test`
 
+#### update config
+
+once you checkout a target of the repo, the real branch|commit will be locked in the table-vc.json file
+
+```json
+    {
+      ...
+      "lock": "3885fb105a"
+    }
+```
+
+therefore, you can easily use `table-vc -u` to sync the table to the locked version
+
 #### practise  
 
 you can this to you package.json
+
 ```json
 {
   ...

@@ -46,7 +46,7 @@ function logInfo(...args) {
     console.log(chalk.blue(...args));
 }
 
-let {checkout, init} = argv;
+let {init, alias, update, checkout} = argv;
 
 const config = require('./config.default')
 
@@ -149,7 +149,7 @@ async function go() {
     }
 
     if (checkout) {
-        await checkoutBranch(configUser.lock)
+        await checkoutBranch(checkout)
     }
 }
 

@@ -4,6 +4,8 @@ const Path = require('path')
 const chalk = require('chalk')
 const readline = require('readline')
 
+const { ConsoleHelper } = require('kht')
+
 const packageObj = require('../package.json')
 
 const Yargs = require('yargs')
@@ -89,67 +91,68 @@ async function checkoutBranch(checkout) {
     await run(checkout)
 }
 
-async function go() {
-
-    if (init) {
+const Handlers = {
+    init: async ()=> {
         if (fs.pathExistsSync(CONFIG_PATH)) {
             logError(`the file ${CONFIG_PATH} are already exist.`)
-        } else {
-            const rl = readline.createInterface({
-                input: process.stdin,
-                output: process.stdout
-            });
-
-            await new Promise((resolve => {
-                rl.question(`git repo url (default:${config.repoUrl}): `, (repoUrl) => {
-                    config.repoUrl = repoUrl || config.repoUrl
-                    rl.question(`utput dir (default:${config.tableDir}): `, (tableDir) => {
-                        config.tableDir = tableDir || config.tableDir
-                        rl.question(`default git brunch for "latest" (default:${config.alias.latest}): `, (latest) => {
-                            config.alias.latest = latest || config.alias.latest
-                            fs.writeJsonSync(CONFIG_PATH, config, {
-                                spaces: 2,
-                                replacer: ' '
-                            })
-                            logInfo(`the file ${chalk.yellow(CONFIG_PATH)} created.`)
-                            rl.close();
-                            resolve();
-                        })
-                    })
-                });
-            }))
+            return;
         }
-    }
-
-    if (alias) {
-        await new Promise((resolve => {
-            rl.question(`alias name: `, (aliasName) => {
-                rl.question(`target git commit/branch: `, (branch) => {
-                    const configUser = getUserConfig()
-                    configUser[aliasName] = branch
-                    fs.writeJsonSync(CONFIG_PATH, configUser, {
-                        spaces: 2,
-                        replacer: ' '
-                    })
-                    logInfo(`the alias ${chalk.yellow(aliasName)}: ${chalk.yellow(branch)} created.`)
-                    rl.close();
-                    resolve();
-                })
-            });
-        }))
-    }
-
-    if(update) {
+        config.repoUrl = (await ConsoleHelper.question(`git repo url (default:${config.repoUrl}): `)) || config.repoUrl
+        config.tableDir = (await ConsoleHelper.question(`input dir (default:${config.tableDir}): `)) || config.tableDir
+        config.alias.latest = (await ConsoleHelper.question(`default git brunch for "latest" (default:${config.alias.latest}): `)) || config.alias.latest
+        fs.writeJsonSync(CONFIG_PATH, config, {
+            spaces: 2,
+            replacer: ' '
+        })
+        logInfo(`the file ${chalk.yellow(CONFIG_PATH)} created.`)
+    },
+    setAlias: async ()=> {
+        const aliasName = (await ConsoleHelper.question(`alias name: `))
+        if(!aliasName) {
+            logError('alias name must exist.');
+        }
+        const targetBranch = (await ConsoleHelper.question(`target git commit/branch: `))
+        if(!targetBranch) {
+            logError('target must exist.');
+        }
+        const configUser = getUserConfig()
+        configUser.alias = configUser.alias || {}
+        configUser.alias[aliasName.trim()] = targetBranch
+        fs.writeJsonSync(CONFIG_PATH, configUser, {
+            spaces: 2,
+            replacer: ' '
+        })
+        logInfo(`the alias ${chalk.yellow(aliasName)}: ${chalk.yellow(targetBranch)} created.`)
+    },
+    update: async ()=>{
         const configUser = getUserConfig()
         if(configUser.lock) {
             await checkoutBranch(configUser.lock)
         }else{
             logInfo(`locked version not found.`)
         }
+    },
+    checkout: async (target)=>{
+        await checkoutBranch(checkout)
+    }
+}
+
+async function go() {
+
+    if (init) {
+        await Handlers.init()
+    }
+
+    if (alias) {
+        await Handlers.setAlias()
+    }
+
+    if(update) {
+        await Handlers.update()
     }
 
     if (checkout) {
-        await checkoutBranch(checkout)
+        await Handlers.checkout()
     }
 }
 

@@ -1,7 +1,7 @@
 {
   "name": "@khgame/table-vc",
   "description": "tools and standards for game value tables version control",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "main": "./bin/index.js",
   "bin": {
     "table-vc": "./bin/exec.js"
@@ -27,7 +27,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "fs-extra": "^7.0.1",
-    "kht": "^0.0.6",
+    "kht": "^0.0.7",
     "path": "^0.12.7",
     "readline": "^1.3.0",
     "yargs": "^13.2.1"

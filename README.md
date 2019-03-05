@@ -1,6 +1,6 @@
 # table-version-control
 
-tools and standards for game value tables version control
+value tables version control tool, based on git
 
 ## usage
 
@@ -8,8 +8,9 @@ tools and standards for game value tables version control
 
 1. `npm i -g @khgame/table-vc`
 2. `cd your_project_dir`
-3. using `table-vc --init` create a `table-vc.json` file
-4. using `table-vc --branch latest|BRANCH_NAME` to checkout selected branch or commits
+3. using `table-vc --init` to create a `table-vc.json` file
+4. using `table-vc --alias` to create alias
+5. using `table-vc --checkout ALIAS|BRANCH_NAME` to checkout selected branch or commits
 
 ### config
 
@@ -20,7 +21,7 @@ the table-vc file is something like this *(the default config)*
 {
   "repoUrl": "git@localhost/table.git",
   "tableDir": "tables/in",
-  "branch": {
+  "alias": {
     "master": "master",
     "latest": "master",
     "develop": "develop"
@@ -32,21 +33,21 @@ the table-vc file is something like this *(the default config)*
 
 - repoUrl : the repoUrl of your table repo
 - tableDir : the target directory to put your table files
-- branch : cv branch => git branch|commit
+- alias : cv alias => git branch|commit
 
 example:
 - config
     ```json
     {
       ...
-      "branch": {
+      "alias": {
         ...
         "test": "301a05e",
       }
     }
     ```
 - usage
-    `table-vc test`
+    `table-vc -c test`
 
 #### practise  
 

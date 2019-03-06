@@ -2,7 +2,6 @@
 
 const Path = require('path')
 const chalk = require('chalk')
-const readline = require('readline')
 
 const { ConsoleHelper } = require('kht')
 
@@ -10,7 +9,7 @@ const packageObj = require('../package.json')
 
 const Yargs = require('yargs')
 const argv = Yargs
-    .usage('Usage: table-vc [--init] [--branch <Branch_Name>] ')
+    .usage('Usage: table-vc [--init|-i] [--alias|-a] [--checkout|-c <Branch_Name>] [--update|-u]')
     .option('i', {
         alias: 'init',
         describe: 'create table-vc.json in this project'

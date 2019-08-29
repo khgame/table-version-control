@@ -1,7 +1,7 @@
 {
   "name": "@khgame/table-vc",
   "description": "tools and standards for game value tables version control",
-  "version": "0.2.4",
+  "version": "0.2.5",
   "main": "./bin/index.js",
   "bin": {
     "table-vc": "./bin/exec.js"
@@ -27,7 +27,7 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "fs-extra": "^7.0.1",
-    "kht": "^0.0.7",
+    "kht": "^0.0.12",
     "path": "^0.12.7",
     "yargs": "^13.2.1"
   },
@@ -36,6 +36,7 @@
     "@babel/core": "^7.3.4",
     "@babel/plugin-transform-runtime": "^7.3.4",
     "@babel/preset-env": "^7.3.4",
+    "@types/fs-extra": "^8.0.0",
     "babel-loader": "^8.0.5",
     "rimraf": "^2.6.3"
   }

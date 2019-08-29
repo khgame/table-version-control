@@ -1587,10 +1587,10 @@ jsonfile@^4.0.0:
   optionalDependencies:
     graceful-fs "^4.1.6"
 
-kht@^0.0.12:
-  version "0.0.12"
-  resolved "https://registry.npm.taobao.org/kht/download/kht-0.0.12.tgz#718b56b6237107102c5427c58dfe60aca60f0751"
-  integrity sha1-cYtWtiNxBxAsVCfFjf5grKYPB1E=
+kht@^0.0.13:
+  version "0.0.13"
+  resolved "https://registry.npm.taobao.org/kht/download/kht-0.0.13.tgz?cache=0&sync_timestamp=1567105064143&other_urls=https%3A%2F%2Fregistry.npm.taobao.org%2Fkht%2Fdownload%2Fkht-0.0.13.tgz#1b73ab109b6fafbc2007f65d4af5fa89a3fd0913"
+  integrity sha1-G3OrEJtvr7wgB/ZdSvX6iaP9CRM=
   dependencies:
     "@babel/runtime" "^7.3.1"
     child_process "^1.0.2"
